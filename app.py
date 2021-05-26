@@ -34,7 +34,6 @@ def make_qr():
         ))
         name_file_to_save += ".png"
         if name_file_to_save.startswith(".png"):
-            print("You have to chose a name")
             button1.configure(text="Submit", style='primary.TButton')
         else:
             qrcode.png(name_file_to_save, scale=20)
@@ -73,9 +72,7 @@ def wifi_window():
     lab1.grid(column=0, row=1, columnspan=2)
     
     # Water Marks
-    # 1
-    water_mark_window2_1_photo = PhotoImage(file="Images/water_mark_5.png")
-    water_mark_window2_1_photo.for_bug = water_mark_window2_1_photo
+    # 1         
     water_mark_window2_1 = Label(window2, image=water_mark_window2_1_photo, bg="#f6f6f7")
     water_mark_window2_1.place(x=70, y=101)
     # 2
@@ -260,6 +257,8 @@ water_mark_4.place(x=-17, y=440)
 water_mark_photo_4 = PhotoImage(file="Images/water_mark_4.png")
 water_mark_5 = Label(main_window, image=water_mark_photo_4, bg="#f6f6f7")
 water_mark_5.place(x=15, y=410)
+# for window2 Bug Prevention
+water_mark_window2_1_photo = PhotoImage(file="Images/water_mark_5.png")
 # ---------------------------End-------------------------
 
 # LabelFrame
