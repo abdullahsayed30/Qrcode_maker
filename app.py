@@ -8,7 +8,6 @@ import os
 # -------------------------------------------Functions Area----------------------------------------------
 
 # Global Vars
-window2 = ""
 wifi_selected = ""
 submit_button = ""
 is_hidden = ""
@@ -34,20 +33,19 @@ def make_qr():
         ))
         name_file_to_save += ".png"
         if name_file_to_save.startswith(".png"):
-            button1.configure(text="Submit", style='primary.TButton')
+            button1.configure(text="Submit", style="primary.TButton")
         else:
             qrcode.png(name_file_to_save, scale=20)
             os.startfile(name_file_to_save)
             print(name_file_to_save)
-            button1.configure(text="Submit", style='primary.TButton')
+            button1.configure(text="Submit", style="primary.TButton")
     else:
-        button1.configure(text="You Should Type Some Thing", style='danger.TButton')
+        button1.configure(text="You Should Type Some Thing", style="danger.TButton")
 # -----------End_func_2----------------
 
 # Wifi Window
 def wifi_window():
     # make the window and its properties
-    global window2
     window2 = Toplevel(main_window)
     window2.config(bg="#f6f6f7")
     window2.grab_set()
@@ -116,8 +114,8 @@ def wifi_window():
 
     # Submit Button
     global submit_button
-    submit_button = ttk.Button(window2, text='Submit', command=make_wifi_qr, width=25, style='primary.Outline.TButton')
-    s.configure('primary.Outline.TButton', font=("Comic Sans MS", 13), background="#f6f6f7")
+    submit_button = ttk.Button(window2, text="Submit", command=make_wifi_qr, width=25, style="primary.Outline.TButton")
+    s.configure("primary.Outline.TButton", font=("Comic Sans MS", 13), background="#f6f6f7")
     submit_button.grid(column=0, row=6, columnspan=2)
 # -----------End_func_3----------------
 
@@ -126,12 +124,12 @@ def make_wifi_qr():
     # Get the SSID Chosen and put in a var just to not use .get() a lot
     SSID_chosen = wifi_selected.get()
     if SSID_chosen == "Select a network":
-        # Change the color button and the text if user didn't chose a network
-        submit_button.configure(text="Chose a network first", style='danger.Outline.TButton')
-        s.configure('danger.Outline.TButton', font=("Comic Sans MS", 13))
+        # Change the color button and the text if user didn"t chose a network
+        submit_button.configure(text="Chose a network first", style="danger.Outline.TButton")
+        s.configure("danger.Outline.TButton", font=("Comic Sans MS", 13))
     else:
         # retarn the button back whene user chose a network
-        submit_button.configure(text="Submit", style='Outline.TButton')
+        submit_button.configure(text="Submit", style="Outline.TButton")
         # _____________________________Organize vars and make theme ready to use____________________________
 
         # Get the value if network is hidden or not
@@ -179,33 +177,35 @@ def make_wifi_qr():
 
 # -------------------------------------------End Of Functions Area----------------------------------------
 
+
+
 # ---------------------------------------Get The Wifi Name and Passwords----------------------------------
 
-# make dic to store the Data
+# make dics to store the Data
 nameAndType = {}
 nameAndPass = {}
 
 # Get The SSID
-wifiData = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8').split('\n')
+SSID_name = subprocess.check_output(["netsh", "wlan", "show", "profiles"]).decode("utf-8").split("\n")
 
 # put them in a list called profiles
-SSID_name = [i.split(":")[1][1:-1] for i in wifiData if "All User Profile" in i]
+SSID_name = [i.split(":")[1][1:-1] for i in SSID_name if "All User Profile" in i]
 
 # Get the pass for each of theme and store the SSID and pass in our dic nameAndPass
 for i in SSID_name:
-    results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear']).decode('utf-8').split('\n')
+    results = subprocess.check_output(["netsh", "wlan", "show", "profile", i, "key=clear"]).decode("utf-8").split("\n")
     results = [b.split(":")[1][1:-1] for b in results if "Key Content" in b]
     nameAndPass[i] = results
 
 # Get the Type of security for each of theme and store the SSID and typeOfSecurity in our dic nameAndType
 for i in SSID_name:
-    results = subprocess.check_output(['netsh', 'wlan', 'show', 'profile', i, 'key=clear']).decode('utf-8').split('\n')
+    results = subprocess.check_output(["netsh", "wlan", "show", "profile", i, "key=clear"]).decode("utf-8").split("\n")
     get_security_type = [b.split(":")[1][1:-1] for b in results if "Authentication" in b]
     nameAndType[i] = get_security_type
 # ------------------------------------------------End--------------------------------------------------------
 
-# Bootstrap Theme
-S = ttkbootstrap.Style(theme='flatly')
+# Bootstrap Theme & Style Objects
+S = ttkbootstrap.Style(theme="flatly")
 s = ttk.Style()
 
 # Make  Window
@@ -263,8 +263,8 @@ water_mark_window2_1_photo = PhotoImage(file="Images/water_mark_5.png")
 
 # LabelFrame
 labelFrame1 = ttk.Labelframe(frame_2, text="Enter Some Text Here:")
-s.configure('TLabelframe.Label', font=("Comic Sans MS", 10), background="#f6f6f7")
-s.configure('TLabelframe', background="#f6f6f7")
+s.configure("TLabelframe.Label", font=("Comic Sans MS", 10), background="#f6f6f7")
+s.configure("TLabelframe", background="#f6f6f7")
 labelFrame1.grid(column=0, row=2, padx=8, pady=10, ipady=5)
 
 # TextBox to get the data
@@ -272,13 +272,13 @@ textBoxOfData = Text(labelFrame1, width=50, height=8, font=("Comic Sans MS", 9))
 textBoxOfData.grid(column=0, row=4, columnspan=2, padx=10, pady=5)
 
 # button to perform the process
-button1 = ttk.Button(frame_2, text="Make Qr-code", command=make_qr, style='TButton')
-s.configure('TButton', font=("Comic Sans MS", 12), width=30)
+button1 = ttk.Button(frame_2, text="Make Qr-code", command=make_qr, style="TButton")
+s.configure("TButton", font=("Comic Sans MS", 12), width=30)
 button1.grid(column=0, row=5, columnspan=2, pady=5)
 
 # button to open wifi sharing widow
-button2 = ttk.Button(frame_2, text="Share Your WIFI Password", command=wifi_window, width=30, style='Outline.TButton')
-s.configure('Outline.TButton', font=("Comic Sans MS", 10), background="#f6f6f7")
+button2 = ttk.Button(frame_2, text="Share Your WIFI Password", command=wifi_window, width=30, style="Outline.TButton")
+s.configure("Outline.TButton", font=("Comic Sans MS", 10), background="#f6f6f7")
 button2.grid(column=0, row=6, columnspan=2, padx=10, pady=5)
 
 # copyright label
