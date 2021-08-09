@@ -13,7 +13,7 @@ Ability to share your Wifi credentials with a click.
 ![QR-App Home Page](https://github.com/abdullahsayed30/Qrcode_maker/blob/master/QR-code%20App.png "Home Page")
 ![QR-App Home Page](https://github.com/abdullahsayed30/Qrcode_maker/blob/master/WifiWindow.png "Wifi Sharing Page")
 
-Me presenting the project😁: https://drive.google.com/file/d/1uaXaklI5gzh2YZkzSnNlEKR28xS2c1Pu/view?usp=sharing
+A silent video showing the project: https://drive.google.com/file/d/1qkdhO7MeMt7qiqtaza_gr_GeXT2gsBUT/view?usp=sharing
  
 
 
